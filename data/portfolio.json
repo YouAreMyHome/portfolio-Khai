@@ -1,0 +1,161 @@
+{
+  "profile": {
+    "name": "Trần Văn Khải",
+    "avatarUrl": "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/502577317_1431424974939578_1353141353574912235_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=V1XwTINVL-QQ7kNvwHgkxi1&_nc_oc=AdkO__2RBXCohHiXV_2rHJHD2PEWi9uDApRo7TtL8BMoQ1dhg8dP1x8-gCkATE65ZqY&_nc_zt=23&_nc_ht=scontent.fsgn5-10.fna&_nc_gid=dK_khYaZ-qLMwb1WfiKSHQ&oh=00_AfTvcx0_xBBR7X9qYG6LYoaxhwEeGm-N75MhLvGKOcR6Mw&oe=68940A0D",
+    "title": "Sinh viên ngành An Ninh Mạng",
+    "university": "Ho Chi Minh City University of Foreign Languages – Information Technology",
+    "description": "Sinh viên ngành An Ninh Mạng với đam mê về Cybersecurity, Network Security và Information Security.",
+    "location": "279 Phan Anh, Bình Trị Đông, Bình Tân, TP. Hồ Chí Minh",
+    "email": "tranvankhai@example.com",
+    "phone": "+84 xxx xxx xxx",
+    "socialLinks": [
+      { "label": "GitHub", "href": "#" },
+      { "label": "LinkedIn", "href": "#" },
+      { "label": "Email", "href": "mailto:tranvankhai@example.com" }
+    ]
+  },
+  "navigation": [
+    { "name": "Trang chủ", "href": "#home" },
+    { "name": "Giới thiệu", "href": "#about" },
+    { "name": "Kinh nghiệm", "href": "#experience" },
+    { "name": "Thành tựu", "href": "#achievements" },
+    { "name": "Dự án", "href": "#projects" },
+    { "name": "Liên hệ", "href": "#contact" }
+  ],
+  "experiences": [
+    {
+      "type": "education",
+      "title": "Cử nhân An Ninh Mạng",
+      "organization": "Đại học Ngoại ngữ - Tin học TP.HCM",
+      "location": "TP. Hồ Chí Minh",
+      "period": "2022 - 2026",
+      "description": "Chuyên ngành An Ninh Mạng với focus vào Cybersecurity, Network Security, và Information Security.",
+      "achievements": ["GPA: 3.5/4.0", "Top 10% lớp", "Thành viên CLB An Ninh Mạng"]
+    },
+    {
+      "type": "work",
+      "title": "Thực tập sinh IT",
+      "organization": "Công ty ABC Technology",
+      "location": "TP. Hồ Chí Minh",
+      "period": "06/2024 - 08/2024",
+      "description": "Tham gia phát triển và bảo trì các ứng dụng web, học hỏi về security testing và penetration testing.",
+      "achievements": ["Phát triển 3 web applications", "Tham gia security audit", "Được đánh giá xuất sắc"]
+    },
+    {
+      "type": "education",
+      "title": "Chứng chỉ CEH",
+      "organization": "EC-Council",
+      "location": "Online",
+      "period": "03/2024",
+      "description": "Certified Ethical Hacker - Chứng chỉ quốc tế về ethical hacking và penetration testing.",
+      "achievements": ["Score: 85%", "Practical Labs completed", "Advanced penetration testing"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Security Monitoring Dashboard",
+      "description": "Hệ thống giám sát an ninh mạng real-time với dashboard tương tác, phát hiện và cảnh báo các mối đe dọa bảo mật.",
+      "image": "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "technologies": ["React", "Node.js", "Python", "MongoDB", "Socket.io"],
+      "category": "Security",
+      "github": "#",
+      "demo": "#",
+      "featured": true
+    },
+    {
+      "title": "Network Vulnerability Scanner",
+      "description": "Tool scan tự động các lỗ hổng bảo mật trong mạng, tạo báo cáo chi tiết và đề xuất biện pháp khắc phục.",
+      "image": "https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "technologies": ["Python", "Nmap", "SQLite", "Tkinter"],
+      "category": "Security",
+      "github": "#",
+      "demo": "#",
+      "featured": false
+    },
+    {
+      "title": "Encrypted Chat Application",
+      "description": "Ứng dụng chat end-to-end encryption với các tính năng bảo mật cao, hỗ trợ group chat và file sharing.",
+      "image": "https://images.pexels.com/photos/5380617/pexels-photo-5380617.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "technologies": ["Vue.js", "Express.js", "WebRTC", "AES Encryption"],
+      "category": "Web App",
+      "github": "#",
+      "demo": "#",
+      "featured": true
+    },
+    {
+      "title": "Penetration Testing Toolkit",
+      "description": "Bộ công cụ tự động hóa các quy trình penetration testing, từ reconnaissance đến exploitation.",
+      "image": "https://images.pexels.com/photos/5380623/pexels-photo-5380623.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "technologies": ["Python", "Bash", "Metasploit", "Burp Suite API"],
+      "category": "Security",
+      "github": "#",
+      "demo": "#",
+      "featured": false
+    },
+    {
+      "title": "IoT Security Platform",
+      "description": "Platform quản lý và bảo vệ các thiết bị IoT, monitor traffic và detect anomalies trong mạng IoT.",
+      "image": "https://images.pexels.com/photos/5380641/pexels-photo-5380641.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "technologies": ["React", "FastAPI", "PostgreSQL", "Docker", "MQTT"],
+      "category": "IoT",
+      "github": "#",
+      "demo": "#",
+      "featured": false
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Giải Nhất Cybersecurity Contest",
+      "description": "Giải nhất cuộc thi An Ninh Mạng cấp trường năm 2024",
+      "date": "2024",
+      "category": "Giải thưởng"
+    },
+    {
+      "title": "Chứng chỉ CEH",
+      "description": "Certified Ethical Hacker từ EC-Council",
+      "date": "2024",
+      "category": "Chứng chỉ"
+    },
+    {
+      "title": "Trưởng nhóm dự án capstone",
+      "description": "Dẫn dắt nhóm 5 người phát triển hệ thống Security Monitoring",
+      "date": "2024",
+      "category": "Lãnh đạo"
+    },
+    {
+      "title": "Top 10% sinh viên xuất sắc",
+      "description": "Xếp hạng trong top 10% sinh viên có thành tích học tập cao",
+      "date": "2023-2024",
+      "category": "Học tập"
+    },
+    {
+      "title": "Hackathon Winner",
+      "description": "Giải Ba tại cuộc thi Hackathon IT Challenge 2023",
+      "date": "2023",
+      "category": "Cuộc thi"
+    },
+    {
+      "title": "Volunteer IT Support",
+      "description": "Tình nguyện hỗ trợ IT cho các tổ chức phi lợi nhuận",
+      "date": "2023-2024",
+      "category": "Tình nguyện"
+    }
+  ],
+  "contact": [
+    {
+      "title": "Email",
+      "value": "tranvankhai@example.com",
+      "href": "mailto:tranvankhai@example.com"
+    },
+    {
+      "title": "Điện thoại",
+      "value": "+84 xxx xxx xxx",
+      "href": "tel:+84xxxxxxxxx"
+    },
+    {
+      "title": "Địa chỉ",
+      "value": "279 Phan Anh, Bình Trị Đông, Bình Tân",
+      "href": "#"
+    }
+  ]
+}

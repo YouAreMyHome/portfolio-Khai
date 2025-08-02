@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, Github, Linkedin, MessageCircle } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import portfolio from '../lib/portfolioData';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -19,8 +20,6 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -35,76 +34,39 @@ export default function ContactSection() {
     }));
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      value: 'tranvankhai@example.com',
-      href: 'mailto:tranvankhai@example.com'
-    },
-    {
-      icon: Phone,
-      title: 'Điện thoại',
-      value: '+84 xxx xxx xxx',
-      href: 'tel:+84xxxxxxxxx'
-    },
-    {
-      icon: MapPin,
-      title: 'Địa chỉ',
-      value: '279 Phan Anh, Bình Trị Đông, Bình Tân',
-      href: '#'
-    }
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-white' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: MessageCircle, href: '#', label: 'Telegram', color: 'hover:text-blue-500' }
-  ];
+  const iconMap: Record<string, any> = {
+    'GitHub': Github,
+    'LinkedIn': Linkedin,
+    'Email': Mail,
+    'Điện thoại': Phone,
+    'Địa chỉ': MapPin,
+  };
+  const contactInfo = portfolio.contact;
+  const socialLinks = portfolio.profile.socialLinks;
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gradient-to-b from-transparent to-galaxy-dark/80">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-20">
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-orbitron text-3xl md:text-4xl font-bold glow-text mb-4">
-            Liên Hệ Với Tôi
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Sẵn sàng thảo luận về các cơ hội hợp tác hoặc dự án thú vị. Hãy kết nối với tôi!
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="font-orbitron text-2xl font-bold text-electric-blue mb-6">
-                Thông Tin Liên Hệ
-              </h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h3 className="font-orbitron text-2xl font-bold text-electric-blue mb-6">
+              Thông Tin Liên Hệ
+            </h3>
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => {
+                const Icon = iconMap[info.title] || Mail;
+                return (
                   <motion.a
                     key={index}
                     href={info.href}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 10 }}
                     className="flex items-center space-x-4 p-4 cyber-card rounded-lg group cursor-pointer"
                   >
                     <div className="flex-shrink-0 p-3 rounded-full bg-electric-blue/20 group-hover:bg-electric-blue/40 transition-colors">
-                      <info.icon className="text-electric-blue" size={20} />
+                      <Icon className="text-electric-blue" size={20} />
                     </div>
                     <div>
                       <p className="font-semibold text-white group-hover:text-electric-blue transition-colors">
@@ -113,39 +75,40 @@ export default function ContactSection() {
                       <p className="text-gray-400 text-sm">{info.value}</p>
                     </div>
                   </motion.a>
-                ))}
-              </div>
+                );
+              })}
             </div>
-
             {/* Social Links */}
-            <div>
+            <div className="mt-8">
               <h4 className="font-orbitron text-lg font-bold text-white mb-4">
                 Kết Nối Xã Hội
               </h4>
               <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    className={`p-3 rounded-full cyber-card ${social.color} transition-all duration-300`}
-                    aria-label={social.label}
-                  >
-                    <social.icon size={20} />
-                  </motion.a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const Icon = iconMap[social.label] || Mail;
+                  return (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      className={`p-3 rounded-full cyber-card transition-all duration-300`}
+                      aria-label={social.label}
+                    >
+                      <Icon size={20} />
+                    </motion.a>
+                  );
+                })}
               </div>
             </div>
-
             {/* Availability Status */}
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="p-6 cyber-card rounded-lg"
+              className="p-6 cyber-card rounded-lg mt-8"
             >
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -155,12 +118,11 @@ export default function ContactSection() {
                 Tôi đang tìm kiếm các cơ hội thực tập và việc làm trong lĩnh vực An Ninh Mạng và Phát Triển Phần Mềm.
               </p>
             </motion.div>
-          </motion.div>
-
+          </div>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -196,7 +158,6 @@ export default function ContactSection() {
                   />
                 </div>
               </div>
-
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                   Tiêu đề *
@@ -212,7 +173,6 @@ export default function ContactSection() {
                   placeholder="Chủ đề liên hệ"
                 />
               </div>
-
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                   Nội dung *
@@ -228,7 +188,6 @@ export default function ContactSection() {
                   placeholder="Viết tin nhắn của bạn..."
                 />
               </div>
-
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -257,3 +216,4 @@ export default function ContactSection() {
     </section>
   );
 }
+               

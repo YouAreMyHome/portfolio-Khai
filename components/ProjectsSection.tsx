@@ -3,75 +3,18 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Play, Code, Shield, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import portfolio from '../lib/portfolioData';
+import Image from 'next/image';
 
-const projects = [
-  {
-    title: 'Security Monitoring Dashboard',
-    description: 'Hệ thống giám sát an ninh mạng real-time với dashboard tương tác, phát hiện và cảnh báo các mối đe dọa bảo mật.',
-    image: 'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['React', 'Node.js', 'Python', 'MongoDB', 'Socket.io'],
-    category: 'Security',
-    icon: Shield,
-    github: '#',
-    demo: '#',
-    featured: true
-  },
-  {
-    title: 'Network Vulnerability Scanner',
-    description: 'Tool scan tự động các lỗ hổng bảo mật trong mạng, tạo báo cáo chi tiết và đề xuất biện pháp khắc phục.',
-    image: 'https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['Python', 'Nmap', 'SQLite', 'Tkinter'],
-    category: 'Security',
-    icon: Code,
-    github: '#',
-    demo: '#',
-    featured: false
-  },
-  {
-    title: 'Encrypted Chat Application',
-    description: 'Ứng dụng chat end-to-end encryption với các tính năng bảo mật cao, hỗ trợ group chat và file sharing.',
-    image: 'https://images.pexels.com/photos/5380617/pexels-photo-5380617.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['Vue.js', 'Express.js', 'WebRTC', 'AES Encryption'],
-    category: 'Web App',
-    icon: Globe,
-    github: '#',
-    demo: '#',
-    featured: true
-  },
-  {
-    title: 'Penetration Testing Toolkit',
-    description: 'Bộ công cụ tự động hóa các quy trình penetration testing, từ reconnaissance đến exploitation.',
-    image: 'https://images.pexels.com/photos/5380623/pexels-photo-5380623.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['Python', 'Bash', 'Metasploit', 'Burp Suite API'],
-    category: 'Security',
-    icon: Shield,
-    github: '#',
-    demo: '#',
-    featured: false
-  },
-  {
-    title: 'IoT Security Platform',
-    description: 'Platform quản lý và bảo vệ các thiết bị IoT, monitor traffic và detect anomalies trong mạng IoT.',
-    image: 'https://images.pexels.com/photos/5380641/pexels-photo-5380641.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'MQTT'],
-    category: 'IoT',
-    icon: Globe,
-    github: '#',
-    demo: '#',
-    featured: true
-  },
-  {
-    title: 'Blockchain Security Audit',
-    description: 'Tool audit smart contracts, phát hiện vulnerabilities và generate security reports cho blockchain applications.',
-    image: 'https://images.pexels.com/photos/5380590/pexels-photo-5380590.jpeg?auto=compress&cs=tinysrgb&w=600',
-    technologies: ['Solidity', 'Web3.js', 'Truffle', 'Ganache'],
-    category: 'Blockchain',
-    icon: Code,
-    github: '#',
-    demo: '#',
-    featured: false
-  }
-];
+// Map category to icon for display
+const iconMap: Record<string, any> = {
+  'Security': Shield,
+  'Web App': Globe,
+  'IoT': Globe,
+  'Tool': Code,
+};
+
+const projects = portfolio.projects;
 
 const categories = ['All', 'Security', 'Web App', 'IoT', 'Blockchain'];
 
@@ -114,14 +57,19 @@ export default function ProjectsSection() {
                 className="cyber-card rounded-xl overflow-hidden group"
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-galaxy-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute top-4 right-4 p-2 rounded-full bg-galaxy-dark/80">
-                    <project.icon className="text-electric-blue" size={20} />
+                    {(() => {
+                      const Icon = iconMap[project.category] || Code;
+                      return <Icon className="text-electric-blue" size={20} />;
+                    })()}
                   </div>
                 </div>
 
@@ -193,14 +141,19 @@ export default function ProjectsSection() {
                 className="cyber-card rounded-xl overflow-hidden group cursor-pointer"
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={500}
+                    height={300}
                     className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-galaxy-dark/60 to-transparent" />
                   <div className="absolute top-2 right-2 p-1.5 rounded-full bg-galaxy-dark/80">
-                    <project.icon className="text-electric-blue" size={14} />
+                    {(() => {
+                      const Icon = iconMap[project.category] || Code;
+                      return <Icon className="text-electric-blue" size={14} />;
+                    })()}
                   </div>
                 </div>
 

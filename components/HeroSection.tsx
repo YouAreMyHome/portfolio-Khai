@@ -1,15 +1,24 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
 import { Download, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import portfolio from '../lib/portfolioData';
 
 export default function HeroSection() {
-  const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:tranvankhai@example.com', label: 'Email' },
-  ];
+  // Map label to icon
+  const iconMap: Record<string, any> = {
+    'GitHub': Github,
+    'LinkedIn': Linkedin,
+    'Email': Mail,
+  };
+  const { profile } = portfolio;
+  const socialLinks = profile.socialLinks.map((link) => ({
+    ...link,
+    icon: iconMap[link.label] || Mail,
+  }));
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
@@ -23,13 +32,14 @@ export default function HeroSection() {
           <div className="relative inline-block">
             <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-r from-electric-blue to-galaxy-purple p-1 pulse-glow">
               <div className="w-full h-full rounded-full bg-galaxy-dark flex items-center justify-center overflow-hidden">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="w-44 h-44 rounded-full bg-gradient-to-br from-electric-blue/20 to-galaxy-purple/20 flex items-center justify-center text-6xl font-orbitron font-bold"
-                >
-                  TVK
-                </motion.div>
+                <Image
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  width={176}
+                  height={176}
+                  className="rounded-full object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -42,7 +52,7 @@ export default function HeroSection() {
           className="space-y-6"
         >
           <h1 className="font-orbitron text-4xl md:text-6xl font-bold">
-            <span className="glow-text">Trần Văn Khải</span>
+            <span className="glow-text">{profile.name}</span>
           </h1>
           
           <motion.div
@@ -52,10 +62,10 @@ export default function HeroSection() {
             className="space-y-2"
           >
             <p className="text-xl md:text-2xl text-electric-blue font-semibold">
-              Sinh viên ngành An Ninh Mạng
+              {profile.title}
             </p>
             <p className="text-lg text-gray-300">
-              Ho Chi Minh City University of Foreign Languages – Information Technology
+              {profile.university}
             </p>
           </motion.div>
 
@@ -67,15 +77,15 @@ export default function HeroSection() {
           >
             <div className="flex items-center space-x-2">
               <MapPin size={16} className="text-electric-blue" />
-              <span>279 Phan Anh, Bình Trị Đông, Bình Tân</span>
+              <span>{profile.location}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail size={16} className="text-electric-blue" />
-              <span>tranvankhai@example.com</span>
+              <span>{profile.email}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Phone size={16} className="text-electric-blue" />
-              <span>+84 xxx xxx xxx</span>
+              <span>{profile.phone}</span>
             </div>
           </motion.div>
 

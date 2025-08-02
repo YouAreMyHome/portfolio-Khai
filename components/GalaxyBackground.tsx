@@ -10,7 +10,8 @@ export default function GalaxyBackground() {
   const animationRef = useRef<number>();
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    const mountNode = mountRef.current;
+    if (!mountNode) return;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -19,7 +20,7 @@ export default function GalaxyBackground() {
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
-    mountRef.current.appendChild(renderer.domElement);
+    mountNode.appendChild(renderer.domElement);
 
     sceneRef.current = scene;
     rendererRef.current = renderer;
@@ -60,35 +61,13 @@ export default function GalaxyBackground() {
     starsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     starsGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-    const starsMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        time: { value: 0 }
-      },
-      vertexShader: `
-        attribute float size;
-        attribute vec3 color;
-        varying vec3 vColor;
-        uniform float time;
-        
-        void main() {
-          vColor = color;
-          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = size * (300.0 / -mvPosition.z) * (1.0 + sin(time + position.x) * 0.2);
-          gl_Position = projectionMatrix * mvPosition;
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vColor;
-        
-        void main() {
-          float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
-          float alpha = 1.0 - smoothstep(0.0, 0.5, distanceToCenter);
-          gl_FragColor = vec4(vColor, alpha);
-        }
-      `,
+    const starsMaterial = new THREE.PointsMaterial({
+      size: 2,
+      sizeAttenuation: true,
       transparent: true,
       vertexColors: true,
-      blending: THREE.AdditiveBlending
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     });
 
     const stars = new THREE.Points(starsGeometry, starsMaterial);
@@ -151,11 +130,6 @@ export default function GalaxyBackground() {
       stars.rotation.y = time * 0.05;
       stars.rotation.x = time * 0.02;
 
-      // Update star material time uniform
-      if (starsMaterial.uniforms) {
-        starsMaterial.uniforms.time.value = time;
-      }
-
       // Gentle camera movement
       camera.position.x = Math.sin(time * 0.1) * 50;
       camera.position.y = 100 + Math.cos(time * 0.15) * 30;
@@ -182,8 +156,8 @@ export default function GalaxyBackground() {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountNode && renderer.domElement) {
+        mountNode.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
